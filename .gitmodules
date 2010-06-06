@@ -1,0 +1,3 @@
+[submodule "lib/proto"]
+	path = lib/proto
+	url = http://github.com/creationix/proto.git
