@@ -36,8 +36,8 @@ var server = http.createServer(function (request, response) {
 		case '/log' :
 		  var now = new Date().getTime();
 		  var logFile = __dirname + '/session-logs/session-log-' + now + '.json';
-		  response.write("\n\nApplication path: " + __dirname);
-		  response.write('\n\nSaving log data to: ' + logFile + ' ...');
+		  //response.write("\n\nApplication path: " + __dirname);
+		  //response.write('\n\nSaving log data to: ' + logFile + ' ...');
 			var postData = ''; 
 
 		  request.addListener("data", function (chunk) {
