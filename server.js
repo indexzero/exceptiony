@@ -47,13 +47,13 @@ var server = http.createServer(function (request, response) {
       request.addListener("end", function () {
         if(postData && postData.length > 0) {
           fs.open(logFile, "w+", 0644, function (error, fd) {
-          	if (error) throw error;
+            if (error) throw error;
 
             fs.writeSync(fd, postData, 0, 'ascii');
             response.write('\n\nLog data saved successfully');
             response.write('\n\nLog Data: \n' + postData);
-          	response.end();
-        	});
+            response.end();
+          });
         }
         else {
           response.write('\n\nNo data to log. Cancelled log operation.');
