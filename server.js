@@ -36,8 +36,6 @@ var server = http.createServer(function (request, response) {
     case '/log' :
       var now = new Date().getTime();
       var logFile = __dirname + '/session-logs/session-log-' + now + '.json';
-      //response.write("\n\nApplication path: " + __dirname);
-      //response.write('\n\nSaving log data to: ' + logFile + ' ...');
       var postData = '';
 
       request.addListener("data", function (chunk) {
@@ -46,10 +44,11 @@ var server = http.createServer(function (request, response) {
 
       request.addListener("end", function () {
         if(postData && postData.length > 0) {
-          fs.open(logFile, "w+", 0644, function (error, fd) {
+          fs.writeFile(logFile, postData, function (error) {
             if (error) throw error;
 
-            fs.writeSync(fd, postData, 0, 'ascii');
+			sys.puts("Write completed successfully! ...");
+
             response.write('\n\nLog data saved successfully');
             response.write('\n\nLog Data: \n' + postData);
             response.end();
