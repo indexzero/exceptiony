@@ -17,6 +17,32 @@ require('proto');
 
 var pathExpression = /^(\/[^\/]+)(.*)$/;
 
+function writePostData(request, response, prefix, fileName) {
+  var postData = '';
+
+  request.addListener("data", function (chunk) {
+    postData += chunk;
+  });
+
+  request.addListener("end", function () {
+    if(postData && postData.length > 0) {
+      fs.writeFile(fileName, postData, function (error) {
+        if (error) throw error;
+
+        sys.puts("Write completed successfully! ...");
+
+        response.write('\n\nLog ' + prefix + ' data saved successfully');
+        response.write('\n\nLog ' + prefix + ' Data: \n' + postData);
+        response.end();
+      });
+    }
+    else {
+      response.write('\n\nNo data to log. Cancelled '+ prefix + ' operation.');
+      response.end();
+    }
+  });
+}
+
 var server = http.createServer(function (request, response) {
   var httpParams = querystring.parse(request.body);
   httpParams.mixin(url.parse(request.url));
@@ -36,29 +62,13 @@ var server = http.createServer(function (request, response) {
     case '/log' :
       var now = new Date().getTime();
       var logFile = __dirname + '/session-logs/session-log-' + now + '.json';
-      var postData = '';
+      writePostData(request, response, "log", logFile);
+      break;
 
-      request.addListener("data", function (chunk) {
-        postData += chunk;
-      });
-
-      request.addListener("end", function () {
-        if(postData && postData.length > 0) {
-          fs.writeFile(logFile, postData, function (error) {
-            if (error) throw error;
-
-			sys.puts("Write completed successfully! ...");
-
-            response.write('\n\nLog data saved successfully');
-            response.write('\n\nLog Data: \n' + postData);
-            response.end();
-          });
-        }
-        else {
-          response.write('\n\nNo data to log. Cancelled log operation.');
-          response.end();
-        }
-      });
+    case '/exception' :
+      var now = new Date().getTime();
+      var exceptionFile = __dirname + '/exceptions/exception-' + now + '.json';
+      writePostData(request, response, "exception", exceptionFile);
       break;
 
     case '/ping' :
