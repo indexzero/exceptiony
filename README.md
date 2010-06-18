@@ -1,7 +1,7 @@
-## jsonm
+## exceptiony
 ---
 
 
 
 ---
-#### Author: [Charlie Robbins](http://www.charlierobbins.com)
+#### Author: [Charlie Robbins](http://www.charlierobbins.com), MIT LICENSED
