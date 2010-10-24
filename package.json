@@ -1,0 +1,15 @@
+{
+  "name": "exceptiony",
+  "description": "A simple remote logging service written in node.js",
+  "version": "0.0.1",
+  "author": "Charlie Robbins <charlie.robbins@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "http://github.com/indexzero/exceptiony.git" 
+  },
+  "keywords": ["logging", "exceptions", "servers", "sysadmin"],
+  "dependencies": { },
+  "main": "./server.js",
+  "scripts": { "start": "server.js" },
+  "engines": { "node": ">= 0.2.0" }
+}

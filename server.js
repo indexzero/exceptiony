@@ -12,7 +12,7 @@ var http = require('http')
   , path = require('path')
   , fs = require('fs');
 
-require.paths.unshift(path.join(__dirname, "/vendor/proto/lib"));
+require.paths.unshift(path.join(__dirname, 'vendor', 'proto', 'lib'));
 require('proto');
 
 var pathExpression = /^(\/[^\/]+)(.*)$/;
