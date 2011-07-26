@@ -8,7 +8,7 @@
       "url": "http://github.com/indexzero/exceptiony.git" 
   },
   "keywords": ["logging", "exceptions", "servers", "sysadmin"],
-  "dependencies": { },
+  "dependencies": { "proto": "0.1.x" },
   "main": "./server.js",
   "scripts": { "start": "server.js" },
   "engines": { "node": ">= 0.2.0" }
