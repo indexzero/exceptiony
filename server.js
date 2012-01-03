@@ -6,14 +6,13 @@
  */
 
 var http = require('http')
-  , sys = require('sys')
+  , sys = require('util')
   , querystring = require('querystring')
   , url = require('url')
   , path = require('path')
   , fs = require('fs');
 
-require.paths.unshift(path.join(__dirname, 'vendor', 'proto', 'lib'));
-require('proto');
+require('./vendor/proto/lib/proto');
 
 var pathExpression = /^(\/[^\/]+)(.*)$/;
 
